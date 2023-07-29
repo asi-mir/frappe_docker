@@ -45,6 +45,10 @@ services:
       - 9000-9005:9000-9005
     # Add supervisor and nginx
     RUN apt-get update && apt-get install -y supervisor nginx
+    # Add volumes for nginx and supervisor:
+    volumes:
+      - nginx-data:/etc/nginx/conf.d/
+      - supervisor-data:/etc/supervisor/conf.d/
 
 volumes:
   mariadb-data:
