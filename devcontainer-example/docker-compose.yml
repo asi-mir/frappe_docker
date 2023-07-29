@@ -30,23 +30,23 @@ services:
     image: redis:alpine
 
   frappe:
-    image: frappe/bench:latest
+    build: 
+      context: .
+      dockerfile: Dockerfile_frappeBench
     command: sleep infinity
     environment:
       - SHELL=/bin/bash
+    volumes:
+      - ..:/workspace:cached
+      - nginx-data: /etc/nginx/conf.d/
+      - supervisor-data: /etc/supervisor/conf.d/
+      # Enable if you require git cloning
+      # - ${HOME}/.ssh:/home/frappe/.ssh
     working_dir: /workspace/development
     ports:
       - 80:80
       - 8000-8005:8000-8005
       - 9000-9005:9000-9005
-    # Add supervisor and nginx
-    RUN apt-get update && apt-get install -y supervisor nginx
-    volumes:
-      - ..:/workspace:cached
-      # Enable if you require git cloning
-      # - ${HOME}/.ssh:/home/frappe/.ssh
-      - nginx-data: /etc/nginx/conf.d/
-      - supervisor-data: /etc/supervisor/conf.d/
 
 volumes:
   mariadb-data:
