@@ -33,7 +33,7 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile_frappeBench
-    command: sleep infinity
+    command: supervisord && sleep infinity
     environment:
       - SHELL=/bin/bash
     volumes:
