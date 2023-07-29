@@ -38,8 +38,8 @@ services:
       - SHELL=/bin/bash
     volumes:
       - ..:/workspace:cached
-      #- nginx-data:/etc/nginx/conf.d/
-      #- supervisor-data:/etc/supervisor/conf.d/
+      - nginx-data:/etc/nginx/conf.d/
+      - supervisor-data:/etc/supervisor/conf.d/
       # Enable if you require git cloning
       # - ${HOME}/.ssh:/home/frappe/.ssh
     working_dir: /workspace/development
