@@ -53,3 +53,5 @@ services:
 volumes:
   mariadb-data:
   postgresql-data:
+  nginx-data:
+  supervisor-data:
