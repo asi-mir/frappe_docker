@@ -34,10 +34,6 @@ services:
     command: sleep infinity
     environment:
       - SHELL=/bin/bash
-    volumes:
-      - ..:/workspace:cached
-      # Enable if you require git cloning
-      # - ${HOME}/.ssh:/home/frappe/.ssh
     working_dir: /workspace/development
     ports:
       - 80:80
@@ -45,8 +41,10 @@ services:
       - 9000-9005:9000-9005
     # Add supervisor and nginx
     RUN apt-get update && apt-get install -y supervisor nginx
-    # Add volumes for nginx and supervisor:
     volumes:
+      - ..:/workspace:cached
+      # Enable if you require git cloning
+      # - ${HOME}/.ssh:/home/frappe/.ssh
       - nginx-data: /etc/nginx/conf.d/
       - supervisor-data: /etc/supervisor/conf.d/
 
